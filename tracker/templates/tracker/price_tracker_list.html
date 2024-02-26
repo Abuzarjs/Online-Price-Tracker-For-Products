@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Tracker List - Midnight Black</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 20px;
+            background-color: #2c3e50; /* Midnight Black background color */
+            color: #ecf0f1; /* Light Gray text color */
+        }
+
+        h2 {
+            color: #3498db; /* Bright Blue heading color */
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        li, .add-product-button {
+            width: 300px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #34495e; /* Darker Gray card background color */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            position: relative; /* Relative positioning for absolute button placement */
+        }
+
+        li:hover, .add-product-button:hover {
+            background-color: #2c3e50; /* Hover color matches the background */
+            transform: translateY(-5px);
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db; /* Bright Blue link color */
+            font-weight: bold;
+        }
+
+        strong {
+            display: block;
+            color: #ecf0f1;
+            font-size: 18px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        span {
+            font-weight: bold;
+            color: #e74c3c; /* Red span color */
+        }
+
+        /* Styles for Add Product Button */
+        .add-product-button {
+            text-decoration: none;
+            color: #ecf0f1;
+            font-weight: bold;
+            background-color: #27ae60;
+            padding: 15px 40px; /* Adjusted width and padding */
+            border: none;
+            border-radius: 10px; /* Larger border-radius for a rounded look */
+            cursor: pointer;
+            display: inline-block;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease; /* Fancy animation */
+        }
+
+        .add-product-button:hover {
+            background-color: #219952; /* Hover color change */
+            transform: scale(1.05); /* Scale the button on hover for a fancy effect */
+        }
+
+        /* Styles for Delete and Update Buttons */
+        .action-buttons {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            display: flex;
+            justify-content: space-between;
+            width: calc(100% - 20px); /* Set the width to 100% minus padding */
+        }
+
+        .action-button {
+            background-color: #e74c3c; /* Red button color */
+            color: #ecf0f1;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .action-button:hover {
+            background-color: #c0392b; /* Darker red on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <h2>Price Tracker List - Midnight Black</h2>
+        <a href="{% url 'tracker:track_price' %}" class="add-product-button">+ Add Product</a>
+        <ul>
+            {% for price_tracker in price_trackers %}
+            <li>
+                <strong><a href="{{ price_tracker.url }}" target="_blank">{{ price_tracker.url }}</a></strong><br>
+                Desired Price: ₹{{ price_tracker.desired_price }}<br>
+                <span>Alert Time: {{ price_tracker.alert_time }} seconds</span>
+                <div class="action-buttons">
+                    <button class="action-button" onclick="deleteProduct('{{ price_tracker.id }}')">Delete</button>
+                    <button class="action-button" onclick="updateProduct('{{ price_tracker.id }}')">Update</button>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- JavaScript for handling delete and update actions -->
+    <script>
+        function deleteProduct(productId) {
+            // Implement delete logic here using productId
+            console.log('Deleting product with ID:', productId);
+        }
+
+        function updateProduct(productId) {
+            // Implement update logic here using productId
+            console.log('Updating product with ID:', productId);
+        }
+    </script>
+</body>
+
+</html>

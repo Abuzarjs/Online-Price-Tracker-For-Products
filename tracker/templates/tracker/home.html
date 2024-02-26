@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Price Tracker</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #6A0572, #AB83A1);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+      padding: 20px;
+      text-align: center;
+      border-bottom: 3px solid #fff;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+
+    p {
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .welcome-content {
+      text-align: center;
+      padding: 20px;
+      margin: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    }
+
+    .welcome-content.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tracker-link-box {
+      margin-top: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .tracker-link-box:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .tracker-link {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      color:  #800080;;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .tracker-link:hover {
+      background: linear-gradient(to right, #ff8a3d, #ff5757);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to Price Tracker</h1>
+  </header>
+  <div class="welcome-content">
+    <p>This is the home page. Explore our Price Tracker section and find the best deals!</p>
+  </div>
+  <div class="tracker-link-box">
+    <a href="{% url 'tracker:price_tracker_list' %}" class="tracker-link">
+      Go to Price Tracked List
+    </a>
+  </div>
+  <script>
+    const welcomeContent = document.querySelector('.welcome-content');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 200) {
+        welcomeContent.classList.add('animate-in');
+      } else {
+        welcomeContent.classList.remove('animate-in');
+      }
+    });
+
+    welcomeContent.classList.add('animate-out');
+    setTimeout(() => {
+      welcomeContent.classList.remove('animate-out');
+    }, 1000);
+  </script>
+</body>
+
+</html>
