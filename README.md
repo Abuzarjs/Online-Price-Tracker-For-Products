@@ -35,3 +35,4 @@ The project is motivated by the complexity consumers face in tracking product pr
 
 ## Contributors
 - **Manyar Abuzar**
+- **Adil Khatik**
